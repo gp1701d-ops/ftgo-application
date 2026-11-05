@@ -74,7 +74,7 @@ jobs:
               query = {'repo': repo, 'sha': sha, 'detail': 'review-comment'}
               if bot:
                   query['comment'] = str(bot['id'])
-              url = 'https://cmymmfd5yh.execute-api.us-east-2.amazonaws.com/prod/status?' + urlencode(query)
+              url = 'https://ok7bqaruaf.execute-api.us-east-2.amazonaws.com/prod/status?' + urlencode(query)
               with urllib.request.urlopen(url, timeout=30) as response:
                   document = json.load(response)
               if document.get('head_sha') != sha or document.get('pull_request') != int(number) or not current():
@@ -101,7 +101,7 @@ jobs:
               owner, name = repo.split('/', 1)
               report = f'https://{owner.lower()}.github.io/{name}/?' + urlencode(
                   {'repo': repo, 'pr': number, 'sha': sha,
-                   'api': 'https://cmymmfd5yh.execute-api.us-east-2.amazonaws.com/prod'})
+                   'api': 'https://ok7bqaruaf.execute-api.us-east-2.amazonaws.com/prod'})
               github(f'/repos/{repo}/statuses/{sha}', 'POST', {
                   'state': state, 'context': 'CodeIntent / Finding review',
                   'description': description[:140], 'target_url': report})
